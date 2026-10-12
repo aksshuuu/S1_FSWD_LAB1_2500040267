@@ -1,26 +1,16 @@
-import "./App.css";
+import React from 'react';
+import './App.css';
 
 function Employee(props) {
   return (
     <div className="employee-card">
-      <div className="photo-container">
-        <img src={props.photo} alt={props.name} className="employee-photo" />
-        <span className="status-badge">Active</span>
-      </div>
-      
+      <img src={props.photo} alt={props.name} className="employee-photo" />
       <div className="employee-details">
-        <h2>{props.name}</h2>
-        <span className="id-badge">ID: {props.employeeId}</span>
-        
-        <div className="info-section">
-          <p className="label">Department</p>
-          <p className="value">{props.department}</p>
-        </div>
-        
-        <div className="info-section">
-          <p className="label">Role</p>
-          <p className="value">{props.role}</p>
-        </div>
+        <h3>{props.name}</h3>
+        <span className="status-badge">Active</span>
+        <p><strong>ID:</strong> {props.employeeId}</p>
+        <p><strong>Dept:</strong> {props.department}</p>
+        <p><strong>Role:</strong> {props.role}</p>
       </div>
     </div>
   );
@@ -36,7 +26,7 @@ function App() {
       photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQChNaZ3X6kJftfuYcrqCLIZwKKoFAbimWUUcMJzjQVz_sFt1LSKNOgUfQ&s=10"
     },
     {
-      name: "Avinash Kumar",
+      name: "Martin Linso",
       employeeId: "2500040288",
       department: "Full Stack Development",
       role: "Junior Developer",
@@ -57,14 +47,14 @@ function App() {
       photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ8ZS-EsEgytdOBaawduBwz9ZSNpk_ESTE7RyZ_fwBJw&s=10"
     },
     {
-      name: "Abhilash Reddy",
+      name: "Abhilash",
       employeeId: "2500040519",
       department: "Data Science",
       role: "ML Engineer",
       photo: "https://img.magnific.com/premium-photo/adorable-male-manager-character-cute-boy-supervisor-illustration-cartoon-office-manager-young-pro_980716-79590.jpg?semt=ais_hybrid&w=740&q=80"
     },
     {
-      name: "Martin Reddy",
+      name: "Junaid Shaik",
       employeeId: "2500040682",
       department: "Quality Assurance",
       role: "QA Automation",
@@ -73,24 +63,46 @@ function App() {
   ];
 
   return (
-    <div className="app">
-      <div className="overlay"></div>
-      <header className="header">
-        <h1>Employee Information System</h1>
-        <p className="subtitle">Interactive Team Directory</p>
+    <div className="app-container">
+      {/* Dark Blue Header Box */}
+      <header className="top-header">
+        <div className="logo-section">
+          <h1>👥 EmployeeTrack</h1>
+          <p>Employee Information System</p>
+        </div>
       </header>
 
-      <main className="employee-grid">
-        {employees.map((emp) => (
-          <Employee
-            key={emp.employeeId}
-            name={emp.name}
-            photo={emp.photo}
-            employeeId={emp.employeeId}
-            department={emp.department}
-            role={emp.role}
-          />
-        ))}
+      <main className="main-content">
+        <div className="dashboard-header">
+          <h2>Team Directory Dashboard</h2>
+          <p>View employee profiles, roles, and department details.</p>
+        </div>
+
+        {/* Minimized Stat Badges */}
+        <div className="stats-container">
+          <div className="stat-badge"><span>6</span> Total Employees</div>
+          <div className="stat-badge"><span>4</span> Departments</div>
+          <div className="stat-badge"><span>6</span> Active Status</div>
+        </div>
+
+        {/* Search Bar */}
+        <div className="search-container">
+          <input type="text" placeholder="Search employee, role, or department..." className="search-bar" />
+        </div>
+        
+        {/* Employee Cards */}
+        <div className="employee-grid">
+          {employees.map((emp) => (
+            <Employee
+              key={emp.employeeId}
+              name={emp.name}
+              photo={emp.photo}
+              employeeId={emp.employeeId}
+              department={emp.department}
+              role={emp.role}
+            />
+          ))}
+        </div>
       </main>
     </div>
   );
